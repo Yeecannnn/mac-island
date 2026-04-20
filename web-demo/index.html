@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Island Demo</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="page">
+      <section class="hero">
+        <div class="notch-shell">
+          <button id="compactIsland" class="compact-island">
+            <span class="compact-side">
+              <span class="status-dot"></span>
+              <span class="compact-copy">
+                <strong id="compactTitle">概览已就绪</strong>
+                <small id="compactSubtitle">点击展开查看交互 demo</small>
+              </span>
+            </span>
+            <span class="compact-divider"></span>
+            <span class="compact-side right">
+              <span class="compact-icon">⌛</span>
+              <span class="compact-copy right">
+                <strong id="compactTaskTitle">专注计时</strong>
+                <small id="compactTaskSubtitle">25:00</small>
+              </span>
+            </span>
+          </button>
+
+          <section id="expandedIsland" class="expanded-island hidden">
+            <header class="island-header">
+              <div>
+                <p class="eyebrow">Web Demo</p>
+                <h1>灵动岛交互原型</h1>
+              </div>
+              <div class="header-actions">
+                <nav id="moduleTabs" class="module-tabs"></nav>
+                <button id="closeIsland" class="icon-button">✕</button>
+              </div>
+            </header>
+
+            <div class="resource-links">
+              <a class="pill-btn secondary" href="https://github.com/Yeecannnn/mac-island/blob/main/dist/MacIsland.zip" target="_blank" rel="noreferrer">下载 MacIsland.zip</a>
+              <a class="pill-btn secondary" href="https://raw.githubusercontent.com/Yeecannnn/mac-island/main/web-demo/OPERATION.md" target="_blank" rel="noreferrer">查看操作文档</a>
+              <a class="pill-btn secondary" href="https://github.com/Yeecannnn/mac-island" target="_blank" rel="noreferrer">查看 GitHub 仓库</a>
+            </div>
+
+            <section id="modulePanel" class="module-panel"></section>
+          </section>
+        </div>
+      </section>
+    </main>
+
+    <template id="dashboardTemplate">
+      <div class="dashboard-grid">
+        <section class="panel-block">
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow">今天</p>
+              <h2 id="todayHeadline"></h2>
+              <p id="usageHeadline" class="muted"></p>
+            </div>
+          </div>
+          <div class="stack" id="agendaCards"></div>
+        </section>
+
+        <section class="panel-block">
+          <div class="media-hero">
+            <div class="artwork">♫</div>
+            <div class="stack dense">
+              <p class="eyebrow" id="mediaSource">Spotify</p>
+              <h2 id="mediaTitle">Midnight City</h2>
+              <p id="mediaSubtitle" class="muted">M83</p>
+            </div>
+          </div>
+
+          <div class="media-controls">
+            <button class="circle-btn">⏮</button>
+            <button class="circle-btn">⏯</button>
+            <button class="circle-btn">⏭</button>
+            <button class="pill-btn secondary">刷新概览</button>
+          </div>
+        </section>
+      </div>
+    </template>
+
+    <template id="aiTemplate">
+      <div class="stack">
+        <section class="panel-card">
+          <div class="row between">
+            <div>
+              <h2>Claude Code 状态</h2>
+              <p id="claudeStatusSubtitle" class="muted"></p>
+            </div>
+            <button id="claudeToggle" class="toggle-chip off">未授权</button>
+          </div>
+          <div class="row">
+            <span id="claudeStatusDot" class="status-dot gray"></span>
+            <strong id="claudeStatusTitle">未授权读取 Claude Code</strong>
+          </div>
+        </section>
+
+        <section class="panel-card">
+          <div class="row between">
+            <div>
+              <h2>AI 接口配置</h2>
+              <p class="muted">接口地址可留空，留空时默认使用 OpenAI 官方地址。</p>
+            </div>
+            <button id="settingsToggle" class="icon-button">⚙</button>
+          </div>
+
+          <div id="settingsPanel" class="stack hidden">
+            <label class="field">
+              <span>接口地址</span>
+              <input id="baseUrlInput" placeholder="可留空" />
+            </label>
+            <label class="field">
+              <span>模型 / Endpoint ID</span>
+              <input id="modelInput" placeholder="gpt-4.1-mini" />
+            </label>
+            <label class="field">
+              <span>API Key</span>
+              <input id="apiKeyInput" type="password" placeholder="sk-..." />
+            </label>
+            <button id="saveSettings" class="pill-btn primary">保存配置</button>
+          </div>
+
+          <div id="settingsSummary" class="settings-summary">
+            <strong id="savedModel">gpt-4.1-mini</strong>
+            <span id="savedHost" class="muted">默认 OpenAI 官方地址</span>
+          </div>
+        </section>
+
+        <section class="chat-shell">
+          <div id="chatMessages" class="chat-messages"></div>
+          <div class="chat-compose">
+            <textarea id="chatInput" rows="3" placeholder="输入你想问的问题"></textarea>
+            <button id="sendChat" class="pill-btn primary">发送</button>
+          </div>
+        </section>
+      </div>
+    </template>
+
+    <template id="clipboardTemplate">
+      <div class="stack">
+        <div class="row between">
+          <div>
+            <h2>剪贴板中转站</h2>
+            <p class="muted">这里是文本和图片的临时缓存演示。</p>
+          </div>
+          <button class="pill-btn secondary">清空</button>
+        </div>
+        <div id="clipboardList" class="stack"></div>
+      </div>
+    </template>
+
+    <template id="timerTemplate">
+      <div class="stack">
+        <h2>专注计时器</h2>
+        <div id="timerDisplay" class="timer-display">25:00</div>
+        <div class="row wrap" id="timerPresets"></div>
+        <div class="row">
+          <input id="customMinutes" class="inline-input" placeholder="自定义分钟数" />
+          <button id="startCustomTimer" class="pill-btn primary">开始自定义计时</button>
+        </div>
+      </div>
+    </template>
+
+    <template id="remindersTemplate">
+      <div class="stack">
+        <h2>健康提醒</h2>
+        <div id="reminderCards" class="reminder-grid"></div>
+      </div>
+    </template>
+
+    <script src="./script.js"></script>
+  </body>
+</html>
