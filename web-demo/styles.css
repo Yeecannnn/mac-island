@@ -1,0 +1,154 @@
+:root {
+  --bg: #08090b;
+  --bg-2: #101319;
+  --panel: rgba(255, 255, 255, 0.06);
+  --panel-border: rgba(255, 255, 255, 0.08);
+  --text: #f5f7fb;
+  --muted: rgba(245, 247, 251, 0.62);
+  --accent: #94f0c6;
+  --cyan: #7fe3ff;
+  --green: #89f29f;
+  --orange: #ffb86a;
+  --yellow: #ffd869;
+  --space-1: 8px;
+  --space-2: 12px;
+  --space-3: 16px;
+  --space-4: 20px;
+  --space-5: 24px;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif;
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; min-height: 100%; background:
+  radial-gradient(circle at top, #1a1e28 0%, #0b0d11 38%, #050608 100%);
+  color: var(--text);
+}
+body { min-height: 100vh; }
+.page { min-height: 100vh; padding: 32px 16px 64px; }
+.hero { display: flex; justify-content: center; }
+.notch-shell { width: min(100%, 980px); display: flex; flex-direction: column; align-items: center; gap: 16px; }
+
+.compact-island {
+  width: min(320px, 100%);
+  min-height: 42px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border: 1px solid var(--panel-border);
+  background: linear-gradient(180deg, rgba(0,0,0,0.95), rgba(14,16,20,0.98));
+  color: var(--text);
+  padding: 10px 18px;
+  border-radius: 999px;
+  cursor: pointer;
+  box-shadow: 0 16px 40px rgba(0,0,0,0.45);
+}
+.compact-side { display: flex; align-items: center; gap: 10px; min-width: 0; flex: 1; }
+.compact-side.right { justify-content: flex-end; text-align: right; }
+.compact-copy.right { align-items: flex-end; }
+.compact-divider { width: 1px; height: 24px; background: rgba(255,255,255,0.12); border-radius: 999px; }
+.compact-copy { display: flex; flex-direction: column; align-items: flex-start; }
+.compact-copy small { color: var(--muted); }
+.status-dot { width: 10px; height: 10px; border-radius: 999px; background: var(--accent); box-shadow: 0 0 0 6px rgba(148,240,198,0.14); }
+.status-dot.gray { background: #9aa0ad; box-shadow: none; }
+
+.expanded-island {
+  width: min(100%, 640px);
+  min-height: 360px;
+  border-radius: 0 0 28px 28px;
+  border: 1px solid var(--panel-border);
+  background: linear-gradient(180deg, rgba(0,0,0,0.96), rgba(12,14,18,0.98));
+  padding: 32px 16px 16px;
+  box-shadow: 0 24px 64px rgba(0,0,0,0.55);
+}
+.expanded-island.hidden { display: none; }
+
+.island-header, .row, .between { display: flex; align-items: center; }
+.island-header { justify-content: space-between; gap: 16px; margin-bottom: 16px; }
+.header-actions { display: flex; align-items: center; gap: 12px; }
+.resource-links { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 16px; }
+.module-tabs { display: flex; gap: 8px; flex-wrap: wrap; }
+.tab-btn, .icon-button, .pill-btn, .circle-btn, .toggle-chip {
+  border: 1px solid var(--panel-border);
+  background: rgba(255,255,255,0.06);
+  color: var(--text);
+}
+.tab-btn {
+  border-radius: 999px; padding: 8px 12px; cursor: pointer;
+}
+.tab-btn.active { background: rgba(255,255,255,0.16); }
+.icon-button { width: 32px; height: 32px; border-radius: 999px; cursor: pointer; }
+.module-panel { display: flex; flex-direction: column; gap: 16px; }
+.stack { display: flex; flex-direction: column; gap: 16px; }
+.stack.dense { gap: 8px; }
+.panel-block, .panel-card, .clip-card, .agenda-card, .reminder-card {
+  border: 1px solid var(--panel-border);
+  background: var(--panel);
+  border-radius: 18px;
+  padding: 12px;
+}
+.dashboard-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.media-hero { display: flex; gap: 16px; align-items: center; }
+.artwork {
+  width: 96px; height: 96px; border-radius: 22px; display: grid; place-items: center;
+  font-size: 38px; font-weight: 700; color: #101217;
+  background: linear-gradient(135deg, var(--accent), rgba(255,255,255,0.32));
+}
+.media-controls, .row.wrap { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+.circle-btn {
+  width: 40px; height: 40px; border-radius: 999px; cursor: pointer;
+}
+.pill-btn { border-radius: 999px; padding: 8px 14px; cursor: pointer; }
+.pill-btn.primary { background: var(--accent); color: #101217; border-color: transparent; }
+.pill-btn.secondary { background: rgba(255,255,255,0.08); }
+.eyebrow { margin: 0 0 6px; color: var(--muted); text-transform: uppercase; font-size: 12px; letter-spacing: 0.06em; }
+.muted { color: var(--muted); }
+h1, h2, p { margin: 0; }
+h1 { font-size: 18px; }
+h2 { font-size: 20px; }
+
+.chat-shell { display: flex; flex-direction: column; gap: 16px; min-height: 280px; }
+.chat-messages { display: flex; flex-direction: column; gap: 12px; padding: 8px 0; min-height: 220px; }
+.bubble {
+  max-width: 78%;
+  border-radius: 16px;
+  padding: 10px 12px;
+  line-height: 1.5;
+}
+.bubble.assistant { background: rgba(255,255,255,0.06); }
+.bubble.user { background: rgba(255,255,255,0.12); margin-left: auto; }
+.chat-compose { display: flex; gap: 12px; align-items: flex-end; }
+.chat-compose textarea {
+  flex: 1; resize: vertical; min-height: 76px;
+}
+
+.field, .settings-summary { display: flex; flex-direction: column; gap: 6px; }
+input, textarea {
+  width: 100%;
+  background: rgba(255,255,255,0.06);
+  color: var(--text);
+  border: 1px solid var(--panel-border);
+  border-radius: 14px;
+  padding: 10px 12px;
+  font: inherit;
+}
+.inline-input { width: 160px; }
+.hidden { display: none !important; }
+
+.clip-card { display: flex; justify-content: space-between; gap: 12px; }
+.timer-display {
+  font-size: clamp(42px, 7vw, 56px);
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+}
+.reminder-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.reminder-card.active.water { background: rgba(127,227,255,0.14); border-color: rgba(127,227,255,0.4); }
+.reminder-card.active.stand { background: rgba(137,242,159,0.14); border-color: rgba(137,242,159,0.4); }
+.toggle-chip.off { color: var(--muted); }
+.toggle-chip.on { background: rgba(148,240,198,0.18); border-color: rgba(148,240,198,0.45); color: var(--text); }
+
+@media (max-width: 820px) {
+  .dashboard-grid, .reminder-grid { grid-template-columns: 1fr; }
+  .expanded-island { width: min(100%, 92vw); }
+  .chat-compose { flex-direction: column; align-items: stretch; }
+  .compact-island { width: min(94vw, 320px); }
+}
