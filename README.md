@@ -3,6 +3,9 @@
 基于 `boring.notch` 的闭合尺寸思路与 `claude-island` 的状态驱动内容区思路，重做的 macOS 灵动岛原型。
 
 当前实现：
+<img width="3002" height="2002" alt="image" src="https://github.com/user-attachments/assets/e5ac1626-a137-4471-82a0-fabf7e23d93d" />
+<img width="3000" height="2002" alt="image" src="https://github.com/user-attachments/assets/be55dbf6-c64d-4fe9-9ba2-a595a29d2149" />
+<img width="3002" height="2002" alt="image" src="https://github.com/user-attachments/assets/0b8523f7-cbd0-440c-ab41-59ac81bd360a" />
 
 - 顶部居中悬浮，闭合尺寸优先贴近实体刘海
 - 模块化展开面板：`Media`、`Calendar`、`Shelf`、`AI`、`Timer`、`Reminders`
